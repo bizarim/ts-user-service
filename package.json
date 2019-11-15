@@ -6,8 +6,9 @@
   "scripts": {
     "lint": "tslint -p .",
     "remove": "rimraf dist",
+    "dev": "npm run build && nodemon --config nodemon.json",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run lint && rimraf dist && tsc",
+    "build": "npm run lint && npm run remove && rimraf dist && tsc",
     "start": "npm run lint && tsc && node dist/index.js"
   },
   "keywords": [],
@@ -17,7 +18,7 @@
     "@types/body-parser": "^1.17.0",
     "@types/express": "^4.16.1",
     "@types/multer": "^1.3.7",
-    "@types/node": "^12.0.0",
+    "@types/node": "^12.12.7",
     "body-parser": "^1.19.0",
     "express": "^4.16.4",
     "mqtt": "^2.18.8",
