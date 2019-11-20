@@ -1,0 +1,51 @@
+version: '3.5'
+
+services:
+  mysql:
+    image: mysql:5.7.23
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./devbox/mysql/my.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+      - ./devbox/mysql/data:/var/lib/mysql/:rw
+    restart: always
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: "qwe123!"
+
+  # redis:
+  #   image: redis:5.0.3-alpine
+  #   container_name: redis
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - ./devbox/redis/redis.conf:/etc/redis.conf:ro
+  #     - ./devbox/redis/data:/data/:rw
+  #   restart: always
+  #   entrypoint: ["redis-server", "/etc/redis.conf"]
+  #   networks:
+  #     - backend
+
+  api:
+    container_name: userService
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "10230:10230" #10230 10230 맵핑
+    environment:
+      - NODE_ENV=dev
+    volumes:
+      - userService:/data/userService
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true
+
+volumes:
+  mysql:
+  userService:

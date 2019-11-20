@@ -9,7 +9,7 @@ import { AsyncInterceptor } from './utill/AsyncInterceptor';
 typeormUseContainer(Container);
 routingUseContainer(Container);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 10230;
 
 const app = createExpressServer({
     controllers: [UserController],
