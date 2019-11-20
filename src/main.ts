@@ -4,6 +4,7 @@ import { Container } from 'typedi';
 import { createExpressServer, useContainer as routingUseContainer } from 'routing-controllers';
 import { UserController } from './controllers/UserController';
 import { AsyncInterceptor } from './utill/AsyncInterceptor';
+import { User } from './entity/User';
 
 
 typeormUseContainer(Container);
@@ -22,8 +23,25 @@ app.listen(port, () => {
     console.log('User service listening on port ' + port);
 });
 
-// createConnection()
-// .then(async connection => {
-//     console.log("Database connection started successfully");
-// })
-// .catch(error => console.log(error))
+createConnection({
+    type: 'mysql',
+    host: 'mysql',
+    port: 3306,
+    username: 'root',
+    password: 'qwe123!',
+    database: 'test',
+    entities: [
+        __dirname + '/entity/*.*'
+    ],
+    synchronize: true,
+    logging: false
+}).then(async connection => {
+    const user = new User();
+    user.userName = 'abc';
+    user.uuid = 'abc';
+    user.phone = '010';
+    user.email = 'abc';
+    user.fullName = 'test';
+    return connection.manager.save(user).then();
+    // here you can start to work with your entities
+}).catch(error => console.log(error));

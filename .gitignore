@@ -3,6 +3,7 @@
 .vscode/
 /.vscode/
 
+dist
 # Logs
 logs
 logs/

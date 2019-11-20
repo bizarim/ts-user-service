@@ -1,8 +1,9 @@
-import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('User')
 export class User {
-    @PrimaryColumn('varchar')
+
+    @PrimaryGeneratedColumn()
     public id: number;
 
     @Column({type: 'varchar', length: 48, unique: true})
@@ -20,16 +21,16 @@ export class User {
     @Column({type: 'varchar', nullable: true})
     public phone: string;
 
-    constructor(uuid: string, username: string, email: string, fullname: string, phone: string) {
-        if (this.hasWhiteSpace(username)) {
-            throw Error('hasWhiteSpace');
-        }
-        this.uuid = uuid;
-        this.userName = username;
-        this.email = email;
-        this.fullName = fullname;
-        this.phone = phone;
-    }
+    // constructor(uuid: string, username: string, email: string, fullname: string, phone: string) {
+    //     if (this.hasWhiteSpace(username)) {
+    //         throw Error('hasWhiteSpace');
+    //     }
+    //     this.uuid = uuid;
+    //     this.userName = username;
+    //     this.email = email;
+    //     this.fullName = fullname;
+    //     this.phone = phone;
+    // }
 
     hasWhiteSpace(value: string) {
         return /\s/g.test(value);

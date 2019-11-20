@@ -5,7 +5,9 @@ services:
     image: mysql:5.7.23
     container_name: mysql
     ports:
-      - "3306:3306"
+      - 3306:3306
+    expose:
+      - 3306
     volumes:
       - ./devbox/mysql/my.cnf:/etc/mysql/conf.d/mysql.cnf:ro
       - ./devbox/mysql/data:/var/lib/mysql/:rw
@@ -41,6 +43,8 @@ services:
       - userService:/data/userService
     networks:
       - backend
+    depends_on:
+      - mysql
 
 networks:
   backend:
