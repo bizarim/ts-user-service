@@ -1,38 +1,32 @@
 import { Entity, Column, PrimaryColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { WhiteSpaceException } from '../exception/WhiteSpaceException';
 
-@Entity('User')
+@Entity('user')
 export class User {
 
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @Column({type: 'varchar', length: 48, unique: true})
+    @Column({ type: 'varchar', length: 48, unique: true })
     public uuid: string;
 
-    @Column({type: 'varchar', length: 48, unique: true})
+    @Column({ type: 'varchar', length: 48, unique: true })
     public userName: string;
 
-    @Column({type: 'varchar', length: 128, unique: true})
+    @Column({ type: 'varchar', length: 128, unique: true })
     public email: string;
 
-    @Column({type: 'varchar', length: 128, unique: false})
-    public fullName: string;
-
-    @Column({type: 'varchar', nullable: true})
-    public phone: string;
-
-    // constructor(uuid: string, username: string, email: string, fullname: string, phone: string) {
-    //     if (this.hasWhiteSpace(username)) {
-    //         throw Error('hasWhiteSpace');
-    //     }
-    //     this.uuid = uuid;
-    //     this.userName = username;
-    //     this.email = email;
-    //     this.fullName = fullname;
-    //     this.phone = phone;
-    // }
-
-    hasWhiteSpace(value: string) {
-        return /\s/g.test(value);
+    constructor(uuid: string, username: string, email: string) {
+        // todo
+        // check white space
+        // check email format
+        // check encode password
+        this.uuid = uuid;
+        this.userName = username;
+        this.email = email;
     }
+
+    // hasWhiteSpace(value: string) {
+    //     return /\s/g.test(value);
+    // }
 }
