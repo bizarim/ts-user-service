@@ -19,9 +19,7 @@ const app = createExpressServer({
     validation: true
 });
 
-app.listen(port, () => {
-    console.log('User service listening on port ' + port);
-});
+
 
 createConnection({
     type: 'mysql',
@@ -36,12 +34,13 @@ createConnection({
     synchronize: true,
     logging: false
 }).then(async connection => {
-    const user = new User();
-    user.userName = 'abc';
-    user.uuid = 'abc';
-    user.phone = '010';
-    user.email = 'abc';
-    user.fullName = 'test';
-    return connection.manager.save(user).then();
+    app.listen(port, () => {
+        console.log('User service listening on port ' + port);
+    });
+    // const user = new User();
+    // user.userName = 'abc';
+    // user.uuid = 'abc';
+    // user.email = 'abc';
+    // await connection.manager.save(user);
     // here you can start to work with your entities
 }).catch(error => console.log(error));
