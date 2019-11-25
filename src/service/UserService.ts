@@ -1,6 +1,6 @@
 import { Service } from 'typedi';
 import { InjectRepository } from 'typeorm-typedi-extensions';
-import { UserRepository } from '../repositories/UserRepository';
+import { UserRepository } from '../repository/UserRepository';
 import { User } from '../entity/User';
 import { UserDto } from '../dto/UserDto';
 

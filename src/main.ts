@@ -2,8 +2,8 @@ import 'reflect-metadata';
 import { useContainer as typeormUseContainer, createConnection } from 'typeorm';
 import { Container } from 'typedi';
 import { createExpressServer, useContainer as routingUseContainer } from 'routing-controllers';
-import { UserController } from './controllers/UserController';
-import { AsyncInterceptor } from './utill/AsyncInterceptor';
+import { UserController } from './controller/UserController';
+import { AsyncInterceptor } from './interceptor/AsyncInterceptor';
 import { User } from './entity/User';
 
 
